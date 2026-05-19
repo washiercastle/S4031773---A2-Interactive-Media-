@@ -1,0 +1,205 @@
+
+/* Root variables for colors, backgrounds and fonts, to make it easier to change the theme of the website in the future if needed. I also added a linear gradient background to give it a more dynamic and visually appealing look, while still keeping it simple and cozy. */
+
+:root {
+  --primary-bg-color: #f4f4f4;
+  --text-color: #ffffff;
+  --main-bg-color: #00000000;
+  --main-text-color: #fff;
+  --main-btn-bg-color: #d9d3cec9;
+  --stained-glass-bg: linear-gradient(to bottom, #ffffff94 0%, #6c6c6c45 100%);
+}
+
+/* After last assignment where I had a lot of trouble with margins and paddings, I found out the best practice is to  */
+/* Youtube video that helped me figure out best practice: https://youtu.be/o273rdc4yi4?si=AM1HqbpVxGviwVSy */
+
+
+/* Create a container for the main content */
+.container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+header{
+  font-size: 50px;
+  font-family: "Merriweather Sans", "Noto Sans", sans-serif;
+  text-align: center;
+  font-weight: 1000;
+  letter-spacing: 0.2em;
+  
+}
+
+#navbar {
+  /* I really like rounded borders on cozy-type websites, as it looks inviting and soft */
+  padding: 1em 2em;
+  border-radius: 16px;
+  background: var(--stained-glass-bg);  
+  
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  bottom: 0;      
+  
+
+}
+
+#navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  text-align: center
+  ;
+}
+
+#navbar ul li {
+  margin-right: 0px;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  /* background-color: var(--primary-bg-color); */
+
+  /* https://www.w3schools.com/css/css3_gradients.asp */
+  background: linear-gradient(to bottom, #080222 0%, #3e0b65 100%);
+  color: var(--text-color);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#timer {
+  font-family: "Merriweather Sans", "Noto Sans", sans-serif;
+  font-size: 5vw;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.circle {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 0 auto 20px;
+  
+}
+
+svg {
+  /* Start from the top */
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+circle {
+  fill: none;
+  stroke-width: 15;
+  cy: 120px; /* Center of the circle */
+  cx: 120px; /* Center of the circle */
+  r: 100px; /* Radius of the circle */
+}
+
+#bgcircle {
+  stroke: rgba(110, 109, 110, 0.611);
+}
+
+#circle {
+  stroke: rgb(255, 255, 255);
+  stroke-dasharray: 628; /* Circumference of the circle (2 * π * r) */
+  stroke-dashoffset: 628; /* Start with the circle hidden */
+  transition: stroke-dashoffset 1s linear;
+  stroke-linecap: round; /* Rounded ends for the progress bar */
+  filter: drop-shadow(0 0 10px rgb(143, 66, 169));
+}
+  
+
+#timer-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: var(--text-color);
+
+}
+
+/* Media player styling */
+.media-player {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.media-player video {
+  max-width: 100%;
+}
+
+.custom-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.custom-controls button {
+  background-color: var(--main-btn-bg-color);
+  color: var(--main-text-color);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background-color: var(--main-bg-color);
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.popup {
+  background-image: var(--stained-glass-bg);
+  border-radius: 10px;
+  padding: 1em 2em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Footer styling */
+footer {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  text-align: center;
+  font-size: 2vw;
+  padding: 4em 2em;
+  width: 100%;
+}
