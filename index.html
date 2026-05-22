@@ -6,11 +6,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LockedOut</title>
-    <!-- I chose the name locked out as a counter to locked in, representing the -->
+    <!-- I chose the name locked out as a counter to locked in, representing the metaphorical struggle to stay focused, locked out of one's mind-->
+    <!-- This title influences my design decisions, specifically when deciding what features to implement and how, keeping them simple and not distracting was the key, as people often desire a clean and not clustered space for study, same should go for a timer.  -->
 
     
-    <!-- Font: Merriweather Sans as i liked it and it was categorized as calming on google fonts lmaooo I'll use it as heading font.-->
-    <!-- Noto Sans is a popular and versatile font, it had 3 variables and was a good compliment to merriweather as the paragraph font. -->
+    <!-- Font: Merriweather Sans and Noto Sans are calming and simple fonts that give an "at peace" feeling-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    <link rel="stylesheet" href="reset.css" />
@@ -20,137 +20,153 @@
   </head>
 
   <body>
-    <!-- Header Section -->
-    <header>
-      <h1>LockedOut</h1>
-    </header>
+    <main>
+      <!-- Wrapping everything in a main so i can make sure only these elements will show up on screen before scroll -->
+      <canvas id="bg-canvas"></canvas>
 
-    <section>
-        <p>What are you doing up so late?</p>
-    </section>
+      <!-- Header Section -->
+      <header>
+        <h1>LockedOut</h1>
+      </header>
 
-
-    <!-- I find the pomodoro technique really helpful personally, that's why it has to be the main focus of the website, and I will build the rest of the functionalities around it. The timer will be displayed prominently at the top of the page, with a clean and minimalist design to minimize distractions. The timer will have a circular progress bar that fills up as time passes, providing a visual representation of the remaining time. 
-    tutorial I followed: https://youtu.be/qvw-jzHra-o?si=Skc3jlhnFoMW6NKz -->
-    <div id="timer">
-      <h2>Pomodoro Timer</h2>
-      <div class="circle">
-        <svg>       <!-- Scalable Vector Graphics, an image in code -->
-        <!-- Background circle -->
-        <circle id="bgcircle"
-          cx="120"
-          cy="120"
-          r="100"   ></circle>
-        <!-- Progress circle -->
-        <circle id="circle"
-          cx="120"
-          cy="120"
-          r="100" ></circle>
-        </svg>
-        <div id="timer-display">00:00</div>
-      </div>
-    </div>
-      
+      <section>
+          <p id="night-easter-egg">Up so late?</p>
+      </section>
 
 
-    <!-- Main Content Section -->
-    <main class="container">
-      <!-- Media Player Section -->
-      <div class="media-player">
-        <video id="custom-video-player" controls>
-          <source
-            src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div class="custom-controls">
-          <button id="play-pause-btn" onclick="togglePlayPause()">
-            <img
-              id="play-pause-img"
-              src="https://img.icons8.com/ios-glyphs/30/play--v1.png"
-              alt="Play Button"
-              width="24"
-              height="24"
-            />
-          </button>
-          <!-- add the missing buttons or functionality here -->
-          <div class="progress-bar">
-            <span id="progress-bar-fill"></span>
-
-          <button id="volume-btn" onclick="toggleVolume()">
-            <img
-              id="volume-img"
-              src="https://img.icons8.com/ios-glyphs/30/volume--v1.png"
-              alt="Volume Button"
-              width="24"
-              height="24"
-            />
-          </button>
-
+      <!-- I find the pomodoro technique really helpful personally, that's why it has to be the main focus of the website, and I will build the rest of the functionalities around it. The timer will be displayed prominently at the top of the page, with a clean and minimalist design to minimize distractions. The timer will have a circular progress bar that fills up as time passes, providing a visual representation of the remaining time. 
+      tutorial I followed: https://youtu.be/qvw-jzHra-o?si=Skc3jlhnFoMW6NKz -->
+      <div id="timer">
+        
+        <div class="circle">
+          <svg>       <!-- Scalable Vector Graphics, an image in code -->
+          <!-- Background circle -->
+          <circle id="bgcircle"
+            cx="120"
+            cy="120"
+            r="100"   ></circle>
+          <!-- Progress circle -->
+          <circle id="circle"
+            cx="120"
+            cy="120"
+            r="100" ></circle>
+          </svg>
+          <div id="timer-display">00:00</div>
+        </div>
+        <div class="timer-btns">
+          <div class="button-wrapper">  
+            <button id="playpause-btn">
+              <img id="playpause-img" 
+                src="/Stuff/play.png" alt="Play Button" width="24" height="24"/>
+            </button>
+            <button id="reset-btn">
+              <img id="reset-img" 
+                src="/Stuff/restart.png" alt="Reset Button" width="24" height="24"/>
+            </button>
+            <button id="skiptoend-btn">
+              <img id="skiptoend-img" 
+                src="/Stuff/skip.png" alt="Skip to End Button" width="24" height="24"/>
+            </button>
           </div>
         </div>
       </div>
         
+      <nav id="navbar">
+        <div class="button-wrapper">
+          <button id="nav-ambience-btn">
+            <img src="/Stuff/ambience.png" alt="Nav Ambience Button" height="30px">
+          </button>
+          <button id="nav-timer-btn">
+            <img src="/Stuff/timer.png" alt="Nav Timer Button" height="35px">
+          </button>
+          <button id="nav-aesthetic-btn">
+            <img src="/Stuff/aesthetic.png" alt="Nav Aesthetic Button">
+          </button>
+        </div>
+      </nav>
     </main>
+    <!-- Main Content Section -->
+    
+      
 
     <!-- For the navigation bar and any pop-ups and modules, best practice is to put them outside of the main component near the end of body
     No directory in the navigation bar, I will customize it to contain the following elements
     - A sound adjuster using Web Audio API, sound can be adjusted for both timer and media player
     - A Mood adjuster that changes the background color and type of music is playing
     - A timer customizer, for pomodoro, different users prefer different time intervals, so I will allow users to customize the timer to their preference
-    - A mini wheel of luck, for users to play when they are taking a break from work or study, to minimize friction while switching between work and break mode, and to make the website more fun and engaging.  -->
+    ---- Scrapped: A mini wheel of luck, for users to play when they are taking a break from work or study, to minimize friction while switching between work and break mode, and to make the website more fun and engaging.  -->
     
-    
-    <nav id="navbar">
-      <ul>
-        <li><a href="#">Ambience</a></li>
-        <li><a href="#">Aesthetic</a></li>
-        <li><a href="#">Timer</a></li>
-        <li><a href="#">Game</a></li>
-        <!-- Other functionalities to be added: mini game, Audio API, No volume slider, time display, or Pomodoro section styles -->
-      </ul>
-    </nav>
+    <div class="container"> 
+      
 
-    <div class="popup">
-      <div class="popupicons">
-        <div class="progress-bar">
-          <button>
-          <img src="/stuff/audio.gif" alt="Volume Icon Gif" width="30" height="30"/>
-          </button>
-          <span id="progress-bar-fill"></span>
+      <div class="popup" id="popup-ambience">
+        
+        <div class="popupicons">
+          <div class="button-wrapper">
+            <button class="noise-buttons" id="white-noise-btn"></button>
+            <button class="noise-buttons" id="pink-noise-btn"></button>
+            <button class="noise-buttons" id="brown-noise-btn"></button>
+            <button class="noise-buttons" id="green-noise-btn"></button>
+          </div>
+        
+
+          <div class="slider-wrapper">
+            <button class="volumn-btn">
+            <img id="ambience-volumn-btn" src="/stuff/audio.png" alt="Volume Icon pg" width="30" height="30"/>
+            </button>
+            <input type="range" min="0" max="1" step="0.01" id="ambience-sound-slider">
+              <!-- sound slider tutorial: https://youtu.be/NT0bU11zVcI?si=NUfLRpmuHBavQ324 -->
+          </div>
         </div>
+      </div>
+
+      <div class="popup" id="popup-timer">
+        <div class="popupicons">
+          <div class="input">
+            <div id="workinterval">
+              <label>Work Interval:
+                <input type="number" id="customwork" min="10" max="60" value="25">
+                <!-- Value=default, initially 25 minutes, adjustable for users up to 1 hour because any more than that without break is not productive  -->
+              </label>
+              <span>minutes</span>
+            </div>
+            <div id="breakinterval">
+              <label>Break Interval:
+                <input type="number" id="custombreak" min="5" max="60" value="5">
+              </label>
+              <span>minutes</span>
+            </div>
+          </div>
+
+      
+          <div class="slider-wrapper">
+            <button id="alert-sound-btn">
+            <img src="/stuff/audio.png" alt="Volume Icon Gif" width="30" height="30"/>
+            </button>
+            <input type="range" min="0" max="1" step="0.01" id="alert-slider">
+          </div>
+        </div>
+      </div>
+
+      <div class="popup" id="popup-aesthetic">
+        <div class="slider-wrapper">
+          <label>Hue</label>
+          <input type="range" min="0" max="360" step="1" id="hue-slider">
+        </div>
+        <div class="button-wrapper">
+          <button id="rain-btn">
+            <img src="/Stuff/aesthetic.png">
+          </button>
+          <button id="star-btn">
+            <img src="/Stuff/aesthetic.png">
+          </button>
+          <button id="snow-btn">
+            <img src="/Stuff/aesthetic.png">
+          </button>
+        </div>
+        
       </div>
     </div>
-
-    <div class="popup">
-      <h2>Timer Customizer</h2>
-      <div class="popupicons">
-        <div class="input">
-          <label>Minutes
-            <input type="number" id="customeminutes" min="10" max="120" value="25">
-            <!-- Value=default, initially 25 minutes, adjustable for users up to 2 hours because any more than that without break is not productive  -->
-          </label>
-        </div>
-        <button>
-          <img src="/stuff/audio.gif" alt="Color Icon Gif" width="30" height="30"/>
-        </button>
-        <button>
-          <img src="/stuff/audio.gif" alt="Color Icon Gif" width="30" height="30"/>
-        </button>
-        <button>
-          <img src="/stuff/audio.gif" alt="Color Icon Gif" width="30" height="30"/>
-        </button>
-
-        <h2>Timer Volume</h2>
-        <div class="progress-bar">
-          <button>
-          <img src="/stuff/audio.gif" alt="Volume Icon Gif" width="30" height="30"/>
-          </button>
-          <span id="progress-bar-fill"></span>
-        </div>
-      </div>
-      </div>
-
 
 
 

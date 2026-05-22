@@ -2,12 +2,15 @@
 /* Root variables for colors, backgrounds and fonts, to make it easier to change the theme of the website in the future if needed. I also added a linear gradient background to give it a more dynamic and visually appealing look, while still keeping it simple and cozy. */
 
 :root {
-  --primary-bg-color: #f4f4f4;
+  --primary-bg-color: radial-gradient(circle at bottom, #3b3b82 0%, #1b0821 50%, #000014 100%);
+  
+  
   --text-color: #ffffff;
   --main-bg-color: #00000000;
   --main-text-color: #fff;
   --main-btn-bg-color: #d9d3cec9;
-  --stained-glass-bg: linear-gradient(to bottom, #ffffff94 0%, #6c6c6c45 100%);
+  --drop-shadow: #00000089;
+  --stained-glass-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0.399) 0%, rgba(255, 255, 255, 0.42) 100%);
 }
 
 /* After last assignment where I had a lot of trouble with margins and paddings, I found out the best practice is to  */
@@ -15,49 +18,71 @@
 
 
 /* Create a container for the main content */
+
+main {
+  height:100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
 .container {
   max-width: 1000px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 header{
-  font-size: 50px;
+  
+  font-size: clamp(1.2rem, 4vw, 2.5rem); /* ← scales down on small screens */  
   font-family: "Merriweather Sans", "Noto Sans", sans-serif;
   text-align: center;
   font-weight: 1000;
   letter-spacing: 0.2em;
+  margin: 10px auto;
+  padding: 20px 20px;
   
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+    /* Canvas sits fixed behind everything at z-index -1 */
+
+  pointer-events: none;
+  /* pointer-events none means clicks pass through the canvas to elements below */
+}
+
+#night-easter-egg {
+  display:none;
 }
 
 #navbar {
   /* I really like rounded borders on cozy-type websites, as it looks inviting and soft */
-  padding: 1em 2em;
+  padding: 0.5em 3em;
+  /* margin-bottom: 30px; */
+  margin-top: 100px;
   border-radius: 16px;
   background: var(--stained-glass-bg);  
   
-  
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  position: sticky;
-  bottom: 0;      
-  
-
-}
-
-#navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
   justify-content: center;
-  text-align: center
-  ;
+  
+  transition: all 0.3s;
 }
 
-#navbar ul li {
-  margin-right: 0px;
+#navbar:hover {
+  filter: drop-shadow(0 0 8px rgba(144, 144, 144, 0.8));
 }
+
+
 
 #navbar a {
   text-decoration: none;
@@ -66,21 +91,25 @@ header{
 
 body {
   font-family: "Noto Sans", sans-serif;
-  /* background-color: var(--primary-bg-color); */
 
   /* https://www.w3schools.com/css/css3_gradients.asp */
-  background: linear-gradient(to bottom, #080222 0%, #3e0b65 100%);
+  background: var(--primary-bg-color);
   color: var(--text-color);
   line-height: 1.6;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* ← pushes header/timer/footer apart */
+  
 }
+
 
 #timer {
   font-family: "Merriweather Sans", "Noto Sans", sans-serif;
   font-size: 5vw;
+  margin-top: 0;
+  padding-top: 0;
   
   display: flex;
   flex-direction: column;
@@ -118,11 +147,16 @@ circle {
 
 #circle {
   stroke: rgb(255, 255, 255);
-  stroke-dasharray: 628; /* Circumference of the circle (2 * π * r) */
-  stroke-dashoffset: 628; /* Start with the circle hidden */
+  stroke-dasharray: 628; 
+    /* Circumference of the circle (2 * π * r) */
+    /* stroke dasharray is a dash pattern, the 628 value means that each dash and space will be 628 units long
+    because the circumference of the circle is 628, the entire circle is a dash and no spaces */
+  stroke-dashoffset: 628;
+    /* off setting the dash by 628 means at the start, the space takes up the entire circumference, so the circle is not visible, and as it moves, the dash takes over and create a progress bar effect. */
   transition: stroke-dashoffset 1s linear;
-  stroke-linecap: round; /* Rounded ends for the progress bar */
-  filter: drop-shadow(0 0 10px rgb(143, 66, 169));
+  stroke-linecap: round; 
+    /* Rounded ends for the progress bar */
+  filter: drop-shadow( 0px 0px 5px );
 }
   
 
@@ -134,6 +168,11 @@ circle {
   font-size: 48px;
   color: var(--text-color);
 
+}
+.timer-btns {
+  background-color: var(--main-btn-bg-color);
+  padding: 0.5rem;
+  border-radius: 16px;
 }
 
 /* Media player styling */
@@ -183,10 +222,29 @@ circle {
 }
 
 .popup {
-  background-image: var(--stained-glass-bg);
-  border-radius: 10px;
-  padding: 1em 2em;
+  
+  display: none; /* hidden by default */
+  
+  z-index: 200;
+  position: absolute;
+  bottom: 80px; /* sits just above the navbar */
 
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.12) 0%,
+      rgba(255,255,255,0.05) 100%
+    );  
+  backdrop-filter: blur(2px);
+  border-radius: 16px;
+  padding: 1em 2em;
+  margin: 1em 2em;
+  filter: drop-shadow( 0 0 10px var(--drop-shadow));
+  
+  transition: all ease 0.3;
+  
+}
+
+.popup.active {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,12 +252,90 @@ circle {
   gap: 1rem;
 }
 
+.popupicons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  
+}
+
+input {
+  text-align: center;
+  border-radius: 6px;
+  width: fit-content;
+}
+button {
+  border-radius: 6px;
+  transition: all 0.5s ease;
+  cursor: pointer; 
+  background-color: #00000000;
+  /* to make the visual feedback clearer */
+  outline: none;
+  border:none
+}
+
+button:hover {
+  transform: scale(1.1);
+  filter: drop-shadow( 0 0 5px var(--drop-shadow));
+}
+
+
+
+/* Ambience buttons styling */
+.noise-buttons {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  
+  cursor: pointer;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: inherit;
+  
+  
+  
+}
+
+#white-noise-btn {
+  background-color: #ffffff;
+}
+#pink-noise-btn {
+  background-color: #eabae2;
+}
+#brown-noise-btn {
+  background-color: #572f2f;
+}
+#green-noise-btn {
+  background-color: #34837d;
+}
+
+
+
+#ambience-volumn-slider {
+  accent-color: white;
+}
+
+.slider-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
 /* Footer styling */
 footer {
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
   text-align: center;
-  font-size: 2vw;
-  padding: 4em 2em;
+  font-size: 12px;
+  padding: 2em 0em;
   width: 100%;
+  opacity: 0.5;
 }
