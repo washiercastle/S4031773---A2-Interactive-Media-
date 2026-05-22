@@ -74,13 +74,13 @@
       <nav id="navbar">
         <div class="button-wrapper">
           <button id="nav-ambience-btn">
-            <img src="/Stuff/ambience.png" alt="Nav Ambience Button" height="30px">
+            <img src="/Stuff/ambience.png" alt="Nav Ambience Button" height="30px" width="30px">
           </button>
           <button id="nav-timer-btn">
-            <img src="/Stuff/timer.png" alt="Nav Timer Button" height="35px">
+            <img src="/Stuff/timer.png" alt="Nav Timer Button" height="35px" width="35px">
           </button>
           <button id="nav-aesthetic-btn">
-            <img src="/Stuff/aesthetic.png" alt="Nav Aesthetic Button">
+            <img src="/Stuff/aesthetic.png" alt="Nav Aesthetic Button" height="30px" width="30px">
           </button>
         </div>
       </nav>
@@ -89,12 +89,12 @@
     
       
 
-    <!-- For the navigation bar and any pop-ups and modules, best practice is to put them outside of the main component near the end of body
+    <!-- For the navigation bar and any pop-ups and modules, best practice is to put them outside of the main component near the end of body so they don't interfere with the main document flow. This also improves accessibility. 
+    
     No directory in the navigation bar, I will customize it to contain the following elements
     - A sound adjuster using Web Audio API, sound can be adjusted for both timer and media player
     - A Mood adjuster that changes the background color and type of music is playing
-    - A timer customizer, for pomodoro, different users prefer different time intervals, so I will allow users to customize the timer to their preference
-    ---- Scrapped: A mini wheel of luck, for users to play when they are taking a break from work or study, to minimize friction while switching between work and break mode, and to make the website more fun and engaging.  -->
+    - A timer customizer, for pomodoro, different users prefer different time intervals, so I will allow users to customize the timer to their preference -->
     
     <div class="container"> 
       
@@ -112,7 +112,7 @@
 
           <div class="slider-wrapper">
             <button class="volumn-btn">
-            <img id="ambience-volumn-btn" src="/stuff/audio.png" alt="Volume Icon pg" width="30" height="30"/>
+            <img id="ambience-volumn-btn" src="/stuff/audio.png" alt="Volume Icon Button" width="30" height="30"/>
             </button>
             <input type="range" min="0" max="1" step="0.01" id="ambience-sound-slider">
               <!-- sound slider tutorial: https://youtu.be/NT0bU11zVcI?si=NUfLRpmuHBavQ324 -->
@@ -155,13 +155,13 @@
         </div>
         <div class="button-wrapper">
           <button id="rain-btn">
-            <img src="/Stuff/aesthetic.png">
+            <img src="/Stuff/rain.png" alt="Rain Button" width="30" height="30">
           </button>
           <button id="star-btn">
-            <img src="/Stuff/aesthetic.png">
+            <img src="/Stuff/stars.png" alt="Stars Button" width="30" height="30">
           </button>
           <button id="snow-btn">
-            <img src="/Stuff/aesthetic.png">
+            <img src="/Stuff/snow.png" alt="Snow Button" width="30" height="30">
           </button>
         </div>
         
@@ -172,11 +172,34 @@
 
     <!-- Footer Section -->
     <footer>
-      <p>&copy; 2024 Media Player Website. All rights reserved.</p>
-      <a href="https://icons8.com/icon/59862/play">Play</a> icon by
-      <a href="https://icons8.com">Icons8</a>
-      <a href="https://icons8.com/icon/61012/pause">Pause</a> icon by
-      <a href="https://icons8.com">Icons8</a>
+      <p>&copy; 2026 Pomodoro Website. All rights reserved.</p>
+       
+        <a href="https://icons8.com/icon/59862/play">Play</a>,
+       
+        <a href="https://icons8.com/icon/61012/pause">Pause</a>,
+       
+        <a href="https://icons8.com/icon/11684/restart">Reset</a>,
+       
+        <a href="https://icons8.com/icon/91476/fast-forward">Fast Fprward</a>,
+      
+        <a href="https://icons8.com/icon/100360/musical">Musical</a>,
+       
+        <a href="https://icons8.com/icon/60007/timer">Timer</a>,
+       
+        <a href="https://icons8.com/icon/102595/paint-palette">Paint Palette</a>,
+      
+        <a href="https://icons8.com/icon/reqgj3e1uKBy/audio">Audio</a>,
+      
+        <a href="https://icons8.com/icon/91635/no-audio">Mute</a>,
+
+        <a href="https://icons8.com/icon/100529/rain">Rain</a>,
+
+        <a href="https://icons8.com/icon/nTZj1FVwe85F/multiple-stars">Multiple Stars</a>,
+
+        <a href="https://icons8.com/icon/RS31TnloXA4_/snow-storm">Snow Storm</a> icon by
+        <a href="https://icons8.com">Icons8</a>
+      
+      
     </footer>
   </body>
 </html>
